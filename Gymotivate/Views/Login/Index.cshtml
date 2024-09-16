@@ -1,0 +1,178 @@
+﻿@model CadastreModel
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData["MensagemErro"] != null) {
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Clse"label>X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<header>
+    <style>
+        main {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cadastre {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 415.8px;
+            height: 561.6px;
+            border-radius: 20px;
+            background: #191A19;
+            box-shadow: 0px 18px 36px -18px rgba(72, 211, 78, 0.30) inset, 0px 30px 60px -12px rgba(72, 211, 78, 0.25) inset;
+        }
+
+        .texto-cadastro {
+            color: #48D34E;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 1px 3px #48D34E;
+            font-family: Inter;
+            font-size: 25.2px;
+            font-style: normal;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: normal;
+            margin: 9px 0;
+        }
+
+        .input-cadastro {
+            display: flex;
+            width: 360px;
+            padding: 9px 10.8px;
+            align-items: center;
+            gap: 18px;
+            border-radius: 10px;
+            background: rgba(36, 44, 40, 0.50);
+            outline: 1px solid #48D34E;
+            color: #48D34E;
+        }
+
+            .input-cadastro:focus {
+                border-color: #48D34E;
+            }
+
+        .btn-cadastro {
+            color: #4ADE50;
+            display: flex;
+            width: 270px;
+            height: 59.4px;
+            padding: 14.4px 72px 14.4px 74.4px;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 54px;
+            border: 1.6px solid #48D34E;
+            background: #2A312B;
+        }
+
+        .btn-acesso {
+            display: flex;
+            width: 174.6px;
+            height: 59.4px;
+            padding: 14.4px 36px;
+            justify-content: center;
+            font-weight: bold;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 54px;
+            background: #48D34E;
+            box-shadow: 0px -3.2px 9.6px 0px #000 inset, 0px 54px 108px -54px rgba(0, 0, 0, 0.30), 0px 96px 192px -32px rgba(64, 64, 116, 0.25);
+            color: #000;
+        }
+
+        ::placeholder {
+            color: #2E5943;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+        .divBtn {
+            padding-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /*.password-input {
+            display: flex;
+            align-items: center;
+        }*/
+
+        .password-icon {
+            margin-left: -35px;
+        }
+
+        .msg-validacao {
+            display: flex;
+            color: #48D34E;
+            align-items: center;
+            flex-direction: column;
+        }
+
+    </style>
+
+</header>
+
+<body>
+    <main role="main">
+        <div class="cadastre">
+            <form asp-controller="Login" asp-action="Login" method="post">
+                <div>
+                    <label class="texto-cadastro" for="Name">Usuário</label>
+                    <input class="input-cadastro" type="text" asp-for="Name" autocomplete="off" placeholder="Usuário">
+                    <p class="msg-validacao">@Html.ValidationMessageFor(x => x.Name)</p>
+                </div>
+
+                <div>
+                    <label class="texto-cadastro" for="Senha">Senha</label>
+                    <div class="password-input">
+                        <input class="input-cadastro" type="password" asp-for="Senha" autocomplete="off" placeholder="Senha">
+                        <p class="msg-validacao">@Html.ValidationMessageFor(x => x.Senha)</p>
+                    </div>
+                </div>
+
+                <div class="divBtn">
+                    <button class="btn-acesso" type="submit">Acessar</button>
+                    <a class="btn-cadastro" asp-controller="Cadastre" asp-action="Cadastrar">Cadastrar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('senha');
+            const showPasswordIcon = document.getElementById('showPassword');
+
+            showPasswordIcon.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    showPasswordIcon.innerHTML = `
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28 11.8576C12.3286 11.8576 15.0886 10.0718 17.56 6.5C15.0886 2.92824 12.3286 1.14235 9.28 1.14235C6.23139 1.14235 3.47139 2.92824 1 6.5C3.47139 10.0718 6.23139 11.8576 9.28 11.8576Z" stroke="#48D34E" stroke-width="1.94824" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28 3.09059C9.45986 3.09059 9.63647 3.10451 9.8088 3.13135C9.78103 3.27639 9.76706 3.42539 9.76706 3.57765C9.76706 4.92262 10.8574 6.01294 12.2024 6.01294C12.3546 6.01294 12.5036 5.99897 12.6481 5.97223C12.6755 6.14353 12.6894 6.32014 12.6894 6.5C12.6894 8.38297 11.163 9.90941 9.28 9.90941C7.39704 9.90941 5.87059 8.38297 5.87059 6.5C5.87059 4.61703 7.39704 3.09059 9.28 3.09059Z" stroke="#48D34E" stroke-width="1.94824" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            `;
+                } else {
+                    passwordInput.type = 'password';
+                    showPasswordIcon.innerHTML = `
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.102 3.33445C3.65617 4.22574 2.28884 5.60273 1.00294 7.46542C3.47139 11.0372 6.23139 12.8231 9.28 12.8231C10.6663 12.8231 11.9928 12.4538 13.2597 11.7153M14.8066 10.6047C15.7611 9.78528 16.6789 8.73885 17.56 7.46542C15.0886 3.89366 12.3286 2.10777 9.28 2.10777C8.471 2.10777 7.68232 2.23353 6.91397 2.48506" fill="#242C28" />
+                                                                <path d="M5.102 3.33445C3.65617 4.22574 2.28884 5.60273 1.00294 7.46542C3.47139 11.0372 6.23139 12.8231 9.28 12.8231C10.6663 12.8231 11.9928 12.4538 13.2597 11.7153M14.8066 10.6047C15.7611 9.78528 16.6789 8.73885 17.56 7.46542C15.0886 3.89366 12.3286 2.10777 9.28 2.10777C8.471 2.10777 7.68232 2.23353 6.91397 2.48506" stroke="#48D34E" stroke-width="1.94824" stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M2.94823 1.13366L15.6118 13.8663" stroke="#48D34E" stroke-width="1.94824" stroke-linecap="round" stroke-linejoin="round" />
+                                                            `;
+                }
+            });
+        });
+    </script>
+</body>

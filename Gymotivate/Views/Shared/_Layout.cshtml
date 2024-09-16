@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gymotivate</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Gymotivate.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #004dda;
+            --dark: #191A19;
+            --green-dark: #003418;
+            --green-light: #48D34E;
+            --green-blue: #00252B;
+            --green-blue-dark: #00252B;
+            --green: #00562B;
+            --green: #00562B;
+            --green-two: #017439;
+            --green-blue: #00252B;
+            --light: #B7F2B9;
+            --grey: #2B2B2B;
+            --white: #FFFFFF;
+            --default-pad: 2.5rem;
+            --medium-pad: calc(var(--default-pad) / 2);
+            --small-pad: calc(var(--medium-pad) / 2);
+        }
+
+        html {
+            height: 100%;
+        }
+
+        html, body {
+            margin: 0;
+        }
+
+        body {
+            font-weight: bold;
+            font-family: Poppins, sans-serif;
+            color: var(--dark);
+            display: flex;
+            background-color: #002126;
+            min-height: 100%;
+        }
+
+        .topnav-menu, .menu {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a {
+            color: var(--green-light);
+            text-decoration: none;
+        }
+
+        .menus {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu {
+            padding: var(--default-pad);
+        }
+
+            .menu li {
+                margin-bottom: var(--small-pad);
+            }
+
+        .mainnav {
+            padding: var(--medium-pad) 0 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #191A19;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 2px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        }
+
+            .mainnav > a {
+                padding-left: var(--default-pad);
+            }
+
+        .main-content {
+            flex-grow: 1;
+            background-image: url("../Views/Imagens/Frame 1.png");
+        }
+
+        .topnav {
+            background-color: #191A19;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--medium-pad) var(--default-pad);
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        }
+
+        .topnav-menu li {
+            display: inline-block;
+            list-style: none;
+            padding: var(--small-pad);
+        }
+
+        main {
+            padding: var(--default-pad);
+            display: flex;
+            flex-direction: column;
+            gap: var(--default-pad)
+        }
+
+        .descripition, .perfil, .number {
+            color: var(--green-light);
+        }
+
+        .number {
+            font-weight: 600;
+            padding: 0 .5rem;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--medium-pad);
+            background-color: var(--dark);
+            border-radius: var(--medium-pad);
+            margin-bottom: var(--default-pad);
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.00) inset, 0px 1px 8px 0px #000, 0px 1px 1px 0px #000;
+        }
+
+        .separate {
+            width: 1px;
+            border-left: 1px solid var(--green-light);
+            align-self: stretch;
+        }
+
+        .menus .menu:first-child {
+            border-bottom: 1px solid var(--green-light);
+        }
+
+        .menus .menu:last-child {
+            position: flex;
+            left: var(--small-pad);
+            bottom: var(--small-pad);
+        }
+
+        .exerc {
+            height: 39px;
+            padding: 10px 33px 9px 6px;
+            align-items: flex-start;
+            gap: 7px;
+            flex-shrink: 0;
+            border-radius: 0px 10px 10px 0px;
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.00) inset, 0px 1px 8px 0px #000, 0px 1px 1px 0px #000;
+            background: #2B2B2B;
+        }
+
+        .exerc-personal {
+            height: 39px;
+            padding: 10px 33px 9px 6px;
+            align-items: flex-start;
+            gap: 7px;
+            flex-shrink: 0;
+            border-radius: 0px 10px 10px 0px;
+            background: #2B2B2B;
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.00) inset, 0px 1px 8px 0px #000, 0px 1px 1px 0px #000;
+        }
+
+        .exerc-links a {
+            color: var(--green-light);
+        }
+
+        .exerc a {
+            padding-left: var(--small-pad);
+            color: var(--green-light);
+        }
+
+        .exerc-personal a {
+            padding-left: var(--small-pad);
+            color: var(--green-light);
+        }
+
+        .logout a {
+            color: var(--green-light);
+        }
+
+        ul.menu:first-child {
+            padding-left: 0px;
+        }
+
+        .charts {
+            display: flex;
+            gap: var(--default-pad);
+        }
+
+        .chart {
+            flex-grow: 1;
+            margin-right: var(--default-pad);
+        }
+
+        .divgames {
+            background: var(--dark);
+            max-width: 80%;
+            width: 382px;
+            height: 166px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset;
+            filter: drop-shadow(0px 25px 60px rgba(72, 211, 78, 0.30)) drop-shadow(0px 50px 100px rgba(72, 211, 78, 0.25));
+        }
+
+        .games a {
+            width: 106px;
+            height: 44px;
+            text-align: center;
+            color: var(--green-light);
+            font-family: Patua One;
+            font-size: 42px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            list-style: none;
+        }
+
+        a:hover {
+            color: var(--green-two);
+        }
+ 
+    </style>
+</head>
+
+<body>
+    <nav class="mainnav">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20" fill="none">
+                <mask id="mask0_8_126" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                    <rect width="20" height="20" fill="#D9D9D9" />
+                </mask>
+                <g mask="url(#mask0_8_126)">
+                    <path d="M17.1355 7.81252L16.0417 6.71877L16.7396 6.00002L14 3.26044L13.2813 3.95836L12.1667 2.84377L12.8334 2.16669C13.1459 1.85419 13.5296 1.70141 13.9844 1.70836C14.4393 1.7153 14.823 1.87502 15.1355 2.18752L17.8125 4.86461C18.125 5.17711 18.2813 5.55731 18.2813 6.00523C18.2813 6.45315 18.125 6.83336 17.8125 7.14586L17.1355 7.81252ZM7.16671 17.8021C6.85421 18.1146 6.474 18.2709 6.02608 18.2709C5.57817 18.2709 5.19796 18.1146 4.88546 17.8021L2.16671 15.0729C1.86115 14.7674 1.70837 14.3993 1.70837 13.9688C1.70837 13.5382 1.86115 13.1702 2.16671 12.8646L2.86462 12.1667L3.97921 13.2709L3.26046 13.9792L6.02087 16.7396L6.72921 16.0209L7.83337 17.1354L7.16671 17.8021ZM15.4792 10.9063L16.7396 9.64586L10.3542 3.26044L9.09379 4.52086L15.4792 10.9063ZM9.64587 16.7396L10.9063 15.4584L4.54171 9.09377L3.26046 10.3542L9.64587 16.7396ZM9.52087 11.8646L11.8855 9.52086L10.4792 8.11461L8.13546 10.4792L9.52087 11.8646ZM10.7605 17.8334C10.4618 18.132 10.0921 18.2813 9.65108 18.2813C9.21011 18.2813 8.84032 18.132 8.54171 17.8334L2.16671 11.4584C1.86115 11.1528 1.70837 10.783 1.70837 10.349C1.70837 9.91495 1.86115 9.54516 2.16671 9.23961L3.42712 7.97919C3.73268 7.67363 4.10074 7.52086 4.53129 7.52086C4.96185 7.52086 5.3299 7.67363 5.63546 7.97919L7.02087 9.36461L9.38546 7.00002L8.00004 5.62502C7.69449 5.31947 7.54171 4.94968 7.54171 4.51565C7.54171 4.08162 7.69449 3.71183 8.00004 3.40627L9.26046 2.14586C9.56601 1.8403 9.93407 1.68752 10.3646 1.68752C10.7952 1.68752 11.1632 1.8403 11.4688 2.14586L17.8542 8.53127C18.1598 8.83683 18.3125 9.20488 18.3125 9.63544C18.3125 10.066 18.1598 10.4341 17.8542 10.7396L16.5938 12C16.2882 12.3056 15.9184 12.4584 15.4844 12.4584C15.0504 12.4584 14.6806 12.3056 14.375 12L13 10.6146L10.6355 12.9792L12.0209 14.3646C12.3195 14.6632 12.4688 15.0313 12.4688 15.4688C12.4688 15.9063 12.3195 16.2743 12.0209 16.5729L10.7605 17.8334Z" fill="#B7F2B9" />
+                </g>
+            </svg>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Gymotivate</a>
+        </div>
+        <div class="menus">
+            <ul class="menu">
+                <li class="exerc"><a href="#">Informativos</a></li>
+                <ul class="exerc-links" style="display: none;">
+                    <!--<li><a href="#">Vídeos</a></li>-->
+                    <li> <a asp-area="" asp-controller="Conteudos" asp-action="Index">Conteúdos</a></li>
+                </ul>
+                <!--<li class="exerc"><a href="#">Academias</a></li>-->
+                <li class="exerc-personal"><a href="#">Treino</a></li>
+                <ul class="exerc-links-personal" style="display: none;">
+                    <li> <a asp-area="" asp-controller="Treinos" asp-action="TipoFicha">Ficha de Treino</a></li>
+                    <li> <a asp-area="" asp-controller="Treinos" asp-action="MinhasFichas">Minhas Fichas</a></li>
+                </ul>
+            </ul>
+        </div>
+    </nav>
+    <div class="main-content">
+        <header class="topnav">
+            @await Component.InvokeAsync("Menu")
+        </header>      
+            @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const exercLink = document.querySelector(".exerc a");
+            const exercLinks = document.querySelectorAll(".exerc-links");
+
+            // Adicione um ouvinte de evento de clique ao link "Exercícios"
+            exercLink.addEventListener("click", function (e) {
+                e.preventDefault(); // Impede o comportamento padrão do link
+
+                // Percorre todas as listas de links "Exercícios" e alterna sua exibição
+                exercLinks.forEach(function (link) {
+                    if (link.style.display === "none" || link.style.display === "") {
+                        link.style.display = "block";
+                    } else {
+                        link.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const exercLink = document.querySelector(".exerc-personal a");
+            const exercLinks = document.querySelectorAll(".exerc-links-personal");
+
+            // Adicione um ouvinte de evento de clique ao link "Exercícios"
+            exercLink.addEventListener("click", function (e) {
+                e.preventDefault(); // Impede o comportamento padrão do link
+
+                // Percorre todas as listas de links "Exercícios" e alterna sua exibição
+                exercLinks.forEach(function (link) {
+                    if (link.style.display === "none" || link.style.display === "") {
+                        link.style.display = "block";
+                    } else {
+                        link.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

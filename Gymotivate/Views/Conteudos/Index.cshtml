@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Conteúdos";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conteúdos de Musculação</title>
+    <style>
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+
+        .topic {
+            background-color: #1A1C1A;
+            border-radius: 10px;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+        }
+
+            .topic h2 {
+                color: #48D34E;
+            }
+
+            .topic p {
+                color: #B7F2B9;
+            }
+
+        .interactive-content {
+            display: none;
+            margin: 10px 0;
+        }
+
+        .show-content {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .conquista-titulo {
+            display: inline-flex;
+            padding: 0px 52px 18px 46px;
+            align-items: center;
+            border-radius: 0px 0px 15px 15px;
+            background: #00282A;
+            box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset, 0px 25px 60px -30px rgba(72, 211, 78, 0.30), 0px 50px 100px -20px rgba(72, 211, 78, 0.25);
+        }
+
+            .conquista-titulo p {
+                color: #006330;
+                font-family: Karla;
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+        .topo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="topo">
+        <div class="conquista-titulo">
+            <p>Conteúdos de Musculação</p>
+        </div>
+    </div>
+    <main>       
+        <div class="topic">
+            <h2>1. Escolha Inteligente de Exercícios e Equipamentos</h2>
+            <p>Começar no mundo da musculação requer decisões estratégicas, como a seleção dos exercícios e dos equipamentos a utilizar...</p>
+            <div class="interactive-content" id="topic-1">
+                <p>Equilibrar os músculos agonistas e antagonistas é essencial para evitar lesões articulares e musculares no futuro. Se houver um desequilíbrio entre esses grupos musculares, o risco de lesões aumenta. Além disso, ao realizar os exercícios, é importante garantir uma amplitude de movimento completa, preservando a força e a flexibilidade.</p>
+                <p>A escolha entre equipamentos guiados, como máquinas com polias, guias e placas de peso, e equipamentos livres, como barras, halteres e anilhas, também influencia a eficácia dos exercícios. Equipamentos guiados fornecem um movimento pré-definido, requerendo postura adequada para execução eficaz, enquanto os equipamentos livres exigem estabilização muscular durante o movimento.</p>
+                <p>Portanto, é fundamental fazer uma análise crítica ao selecionar os exercícios, considerando os prós e contras de cada um, além de escolher os equipamentos que otimizam o desempenho e minimizam o risco de lesões.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-1')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>2. Estratégia de Treinamento: A Ordem dos Exercícios</h2>
+            <p>A ordem dos exercícios desempenha um papel fundamental no alcance eficiente de seus objetivos de treinamento...</p>
+            <div class="interactive-content" id="topic-2">
+                <p>Muitos optam por iniciar com exercícios específicos para uma modalidade em particular, enquanto outros priorizam exercícios que visam grandes grupos musculares, exercícios multiarticulares ou aqueles que têm um foco estético.</p>
+                <p>Quando se trata de iniciar sua sessão de treino, é crucial seguir uma abordagem estratégica:</p>
+                <p>Exercícios Multiarticulares e Monoarticulares: Varie entre exercícios que envolvem múltiplas articulações e aqueles que se concentram em uma única articulação para estimular diferentes aspectos do seu condicionamento físico.</p>
+                <p>Variedade de Exercícios para o Mesmo Grupo Muscular: Mude regularmente os exercícios para um grupo muscular específico, mantendo seu treinamento desafiador e evitando adaptação excessiva.</p>
+                <p>Priorize Grandes e Pequenos Grupos Musculares: Alterne entre exercícios que visam grandes grupos musculares e aqueles que direcionam grupos musculares menores, garantindo um treinamento equilibrado.</p>
+                <p>Número de Exercícios por Grupo Muscular: Determine o número ideal de exercícios para cada grupo muscular com base em seus objetivos e capacidades individuais.</p>
+                <p>Desenvolvimento de Programas e Métodos de Treinamento: Crie programas de treinamento personalizados que atendam às suas metas, levando em consideração a progressão ao longo do tempo.</p>
+                <p>Organização da Ordem dos Exercícios: A ordem em que realiza seus exercícios pode influenciar significativamente seus resultados. Planeje com cuidado a sequência de exercícios para otimizar seu treinamento.</p>
+                <p>Esperamos que essas orientações ajudem a tornar sua jornada na musculação mais eficaz e agradável. Lembre-se de que a chave para o sucesso está na combinação certa de exercícios e na abordagem inteligente ao treinamento.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-2')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>3. Estratégias Criativas para a Montagem do seu Programa de Treinamento</h2>
+            <p>A montagem do programa de treino é como a criação de uma fórmula para alcançar seus objetivos de condicionamento físico...</p>
+            <div class="interactive-content" id="topic-3">
+                <p>Para tornar isso mais envolvente, consideramos várias estratégias baseadas na anatomia e biomecânica humanas. Vamos explorar algumas delas:</p>
+                <p>Alternância por Segmento: Dividir o treinamento em segmentos específicos do corpo, como membros superiores e inferiores, para focar em áreas específicas.</p>
+                <p>Mistura Articular (Agonista/Antagonista e Completo): Combinar exercícios que trabalhem músculos opostos (agonistas e antagonistas) ou exercícios compostos que envolvam várias articulações para um treino mais completo.</p>
+                <p>Pré-Exaustão Associada à Articulação Adjacente: Começar com um exercício que isola um músculo, seguido por um exercício composto que envolve músculos adjacentes, intensificando o desafio.</p>
+                <p>Foco em Grupo Muscular Específico: Concentrar-se em exercícios que visam um grupo muscular em particular, ideal para desenvolver áreas específicas do corpo.</p>
+                <p>Abordagem Mista: Combinação de várias estratégias para manter o treino diversificado e desafiador.</p>
+                <p>Portanto, ao planejar a ordem de seus exercícios, escolha com sabedoria qual músculo deseja priorizar, pois uma simples mudança na ordem pode impactar significativamente seus resultados.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-3')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>4. Desvendando o Volume dos Exercícios</h2>
+            <p>Volume se relaciona diretamente com a quantidade de exercício que você faz durante uma sessão de treinamento...</p>
+            <div class="interactive-content" id="topic-4">
+                <p>Pode ser representado pelo número de séries multiplicado pelas repetições e pelo peso. O volume é essencial para compreender o progresso em seu treinamento.</p>
+                <p>No treinamento de força, o volume é definido pela multiplicação de séries, repetições e peso. O treinamento periodizado começa com períodos de alto volume, evoluindo para menos volume e mais intensidade. Essa fase inicial de alto volume prepara seu corpo para tolerar exercícios de alta intensidade.</p>
+                <p>Lembre-se de que o volume é uma variável crucial para alcançar seus objetivos de treinamento. Adaptar o volume ao seu objetivo e capacidade é fundamental para obter os resultados desejados.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-4')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>5. A Relação Entre Carga e Repetições</h2>
+            <p>A montagem do programa de treino é como a criação de uma fórmula para alcançar seus objetivos de condicionamento físico...</p>
+            <div class="interactive-content" id="topic-5">
+                <p>Uma maneira prática de determinar a carga é usar as repetições máximas (RM), que indicam o peso ideal para um determinado número de repetições. No entanto, é importante destacar que não é necessário treinar sempre no limite absoluto para obter os resultados desejados.</p>
+                <p>O ideal é trabalhar próximo às repetições máximas, pois isso proporciona o estímulo ideal para alcançar seus objetivos. Lembre-se de que não é necessário treinar a 100% de 1 RM em todas as sessões, mas sim se aproximar desse limite.</p>
+                <p>Atenção: Evite treinar constantemente com 100% de 1 RM, pois isso pode levar a lesões e a fadiga excessiva.</p>
+                <p>Outra abordagem para determinar a intensidade (carga) do treinamento é o uso de um percentual sobre o teste de repetição máxima (% de 1 RM) para um exercício específico. No entanto, essa abordagem é menos comum no dia a dia, pois requer a determinação do peso máximo para cada exercício, através do teste de 1 RM, e ajustes periódicos dos pesos para manter a intensidade ideal.</p>
+                <p>Explorar a intensidade dos exercícios é essencial para atingir suas metas na musculação. </p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-5')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>6. Frequência de Treinamento: Quanto é o Suficiente?</h2>
+            <p>A frequência de treinamento desempenha um papel crucial na sua jornada de condicionamento físico...</p>
+            <div class="interactive-content" id="topic-6">
+                <p>Para iniciantes, recomenda-se realizar duas ou três sessões por semana, abrangendo todo o corpo. É aconselhável manter um intervalo de 48 horas entre as sessões para garantir uma recuperação adequada. Por outro lado, fisiculturistas muitas vezes seguem sistemas de treinamento com três ou mais dias consecutivos, seguidos por um dia de descanso.</p>
+                <p>De acordo com especialistas, realizar duas sessões de treinamento para cada grupo muscular semanalmente é suficiente para obter ótimos resultados em hipertrofia muscular. No entanto, quando a frequência de treinamento aumenta, é importante planejar de forma detalhada para garantir uma recuperação adequada, distribuindo o trabalho muscular em diferentes dias.</p>
+                <p>Lembre-se de que a resposta ao treinamento pode variar de pessoa para pessoa. Portanto, é essencial adaptar seu plano de treinamento às suas necessidades individuais.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-6')">Clique para saber mais</p>
+        </div>
+
+        <div class="topic">
+            <h2>7. Intervalos entre Séries e Exercícios</h2>
+            <p>Muitas vezes, os intervalos de descanso entre séries e exercícios são negligenciados, especialmente em academias movimentadas...</p>
+            <div class="interactive-content" id="topic-7">
+                <p>No entanto, esses intervalos desempenham um papel fundamental no alcance de seus objetivos. O respeito aos intervalos proporciona a recuperação ideal para diferentes metas de treinamento.</p>
+                <p>Para atingir seus objetivos de forma plena, é fundamental respeitar os intervalos. Os intervalos adequados garantem a recuperação ideal para cada objetivo, e cada tipo de exercício tem seu tempo ideal de recuperação.</p>
+            </div>
+            <p class="show-content" onclick="toggleContent('topic-7')">Clique para saber mais</p>
+        </div>
+    </main>
+
+    <script>
+        function toggleContent(topicId) {
+            var content = document.getElementById(topicId);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

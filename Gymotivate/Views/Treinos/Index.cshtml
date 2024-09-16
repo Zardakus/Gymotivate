@@ -1,0 +1,349 @@
+﻿@{
+    ViewData["Title"] = "Treinos";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte sua Ficha de Treino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="conquista-titulo">
+        <p>Monte sua Ficha de Treino</p>
+    </div>
+    <div class="treino">
+        <div class="dias">
+            <div class="dia" id="segunda" ondrop="drop(event)" ondragover="allowDrop(event)">Segunda-feira</div>
+            <div class="dia" id="terca" ondrop="drop(event)" ondragover="allowDrop(event)">Terça-feira</div>
+            <div class="dia" id="quarta" ondrop="drop(event)" ondragover="allowDrop(event)">Quarta-feira</div>
+            <div class="dia" id="quinta" ondrop="drop(event)" ondragover="allowDrop(event)">Quinta-feira</div>
+            <div class="dia" id="sexta" ondrop="drop(event)" ondragover="allowDrop(event)">Sexta-feira</div>
+        </div>
+
+        <hr />
+
+        <div class="grupo-botoes">
+            <button id="btnPeito">Exercícios de Peito</button>
+            <button id="btnPerna">Exercícios de Perna</button>
+            <button id="btnCostas">Exercícios de Costas</button>
+            <button id="btnBiceps">Exercícios de Bíceps</button>
+            <button id="btnTriceps">Exercícios de Tríceps</button>
+        </div>
+        <div class="container">
+            <div class="grupo-exercicios" id="grupoPeito">
+                @foreach (var exercicio in Model)
+                {
+                    @if (exercicio.GrupoExercicio == 1)
+                    {
+                        <div class="exercicio" draggable="true" ondragstart="drag(event)" data-exercicio-id="@exercicio.ExercicioId" data-exercicio-nome="@exercicio.Nome">@exercicio.Nome</div>
+                    }
+                }
+            </div>
+            <div class="grupo-exercicios" id="grupoPerna">
+                @foreach (var exercicio in Model)
+                {
+                    @if (exercicio.GrupoExercicio == 2)
+                    {
+                        <div class="exercicio" draggable="true" ondragstart="drag(event)" data-exercicio-id="@exercicio.ExercicioId" data-exercicio-nome="@exercicio.Nome">@exercicio.Nome</div>
+                    }
+                }
+            </div>
+            <div class="grupo-exercicios" id="grupoCostas">
+                @foreach (var exercicio in Model)
+                {
+                    @if (exercicio.GrupoExercicio == 3)
+                    {
+                        <div class="exercicio" draggable="true" ondragstart="drag(event)" data-exercicio-id="@exercicio.ExercicioId" data-exercicio-nome="@exercicio.Nome">@exercicio.Nome</div>
+                    }
+                }
+            </div>
+            <div class="grupo-exercicios" id="grupoBiceps">
+                @foreach (var exercicio in Model)
+                {
+                    @if (exercicio.GrupoExercicio == 4)
+                    {
+                        <div class="exercicio" draggable="true" ondragstart="drag(event)" data-exercicio-id="@exercicio.ExercicioId" data-exercicio-nome="@exercicio.Nome">@exercicio.Nome</div>
+                    }
+                }
+            </div>
+            <div class="grupo-exercicios" id="grupoTriceps">
+                @foreach (var exercicio in Model)
+                {
+                    @if (exercicio.GrupoExercicio == 5)
+                    {
+                        <div class="exercicio" draggable="true" ondragstart="drag(event)" data-exercicio-id="@exercicio.ExercicioId" data-exercicio-nome="@exercicio.Nome">@exercicio.Nome</div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="finaliza-treino">
+        <form asp-controller="Treinos" asp-action="SalvarTreino" method="post" class="form-container">
+            <input class="nome-ficha" type="text" name="nomeTreino" placeholder="Nome do Treino" required>
+            <button class="btn-salva-treino" type="submit">Salvar Treino</button>
+        </form>
+    </div>
+    <script>
+        // Objeto para armazenar os exercícios arrastados para cada dia da semana
+        const exerciciosPorDia = {
+            segunda: [],
+            terca: [],
+            quarta: [],
+            quinta: [],
+            sexta: [],
+        };
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerText);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const exercicioId = event.dataTransfer.getData("text");
+            const exercicio = document.createElement("div");
+            exercicio.innerText = exercicioId;
+            exercicio.className = "exercicio";
+
+            if (event.target.classList.contains("dia")) {
+                const dia = event.target.id;
+                const exerciciosDoDia = exerciciosPorDia[dia];
+
+                if (exerciciosDoDia.length < 5 && !exerciciosDoDia.includes(exercicioId)) {
+                    exerciciosDoDia.push(exercicioId);
+                    event.target.appendChild(exercicio);
+
+                    exercicio.addEventListener("click", () => {
+                        // Remove o exercício ao clicar
+                        event.target.removeChild(exercicio);
+                        const index = exerciciosDoDia.indexOf(exercicioId);
+                        if (index !== -1) {
+                            exerciciosDoDia.splice(index, 1);
+                        }
+                    });
+                }
+            }
+        }
+
+        const buttons = document.querySelectorAll('.grupo-botoes button');
+        const gruposExercicios = document.querySelectorAll('.grupo-exercicios');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const grupoId = "grupo" + button.id.substring(3);
+                const grupo = document.getElementById(grupoId);
+
+                if (grupo.style.display === 'flex') {
+                    grupo.style.display = 'none';
+                } else {
+                    grupo.style.display = 'flex';
+                }
+
+                // Oculte os outros grupos de exercícios
+                gruposExercicios.forEach(otherGrupo => {
+                    if (otherGrupo.id !== grupoId) {
+                        otherGrupo.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function enviarExerciciosParaController(exerciciosPorDia, nomeTreino) {
+            // Converte as listas de exercícios em um objeto JSON
+            const exerciciosJSON = JSON.stringify(exerciciosPorDia);
+
+            // Cria um objeto FormData para enviar os dados
+            const formData = new FormData();
+            formData.append('exerciciosPorDia', exerciciosJSON);
+            formData.append('nomeTreino', nomeTreino);
+
+            // Envia os dados para o controller usando uma solicitação POST
+            fetch('/Treinos/SalvarTreino', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        alert('Treino salvo com sucesso!');
+                    } else {
+                        alert('Erro ao salvar o treino. Verifique os dados informados.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação:', error);
+                });
+        }
+
+        // Adicione um ouvinte de eventos para o botão "Salvar Treino"
+        document.querySelector('.btn-salva-treino').addEventListener('click', function (event) {
+            event.preventDefault(); // Evita que o formulário seja enviado de forma tradicional
+
+            // Coleta o nome do treino
+            const nomeTreino = document.querySelector('.nome-ficha').value;
+
+            // Chama a função para enviar os dados para o controller
+            enviarExerciciosParaController(exerciciosPorDia, nomeTreino);
+        });
+
+    </script>
+</body>
+</html>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .treino {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 20px 0px 20px;
+    }
+
+    .dias {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .dia {
+        background-color: #1A1C1A;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        color: #017439;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 19%;
+    }
+
+    /* Estilize os botões dos grupos de exercícios */
+    .grupo-botoes {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px; /* Espaçamento superior para separá-los dos dias */
+    }
+
+        .grupo-botoes button {
+            background-color: #1A1C1A;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+            color: #017439;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .grupo-botoes button:hover {
+                background-color: #2B2B2B;
+            }
+
+    .grupos-exercicios {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grupo-exercicios {
+        display: none;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .exercicio {
+        background-color: #00252B;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        color: #48D34E;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 100;
+        margin: 8px;
+    }
+
+        .exercicio:hover {
+            background-color: #003418;
+        }
+
+    .container {
+        background-color: #1A1C1A;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        padding: 20px;
+        text-align: center;
+        margin: 20px;
+    }
+
+    .conquista-titulo {
+        display: inline-flex;
+        padding: 0px 52px 18px 46px;
+        align-items: center;
+        border-radius: 0px 0px 15px 15px;
+        background: #00282A;
+        box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset, 0px 25px 60px -30px rgba(72, 211, 78, 0.30), 0px 50px 100px -20px rgba(72, 211, 78, 0.25);
+    }
+
+        .conquista-titulo p {
+            color: #006330;
+            font-family: Karla;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+    .btn-salva-treino {
+        max-width: calc(50% - 10px); /* 50% do espaço com uma margem de 10px */
+        background-color: #48D34E;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        .btn-salva-treino:hover {
+            background-color: #017439;
+        }
+
+    .nome-ficha {
+    max-width: calc(50% - 10px); /* 50% do espaço com uma margem de 10px */
+    padding: 9px 10.8px;
+    border-radius: 10px;
+    background: rgba(36, 44, 40, 0.50);
+    outline: 1px solid #48D34E;
+    color: #48D34E;
+}
+
+            .nome-ficha:focus {
+                border-color: #48D34E;
+            }
+
+    .finaliza-treino {
+    display: flex;
+    justify-content: space-between; /* Isso coloca os elementos nos lados opostos */
+    align-items: center;
+    margin: 0px 20px 30px 20px;
+}
+
+    .form-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 300px;
+        width: 100%;
+    }
+</style>

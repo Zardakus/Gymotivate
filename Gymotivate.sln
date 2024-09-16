@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gymotivate", "Gymotivate\Gymotivate.csproj", "{67B8DC81-5290-4B2F-A438-875DFB9DCF69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67B8DC81-5290-4B2F-A438-875DFB9DCF69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B8DC81-5290-4B2F-A438-875DFB9DCF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B8DC81-5290-4B2F-A438-875DFB9DCF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B8DC81-5290-4B2F-A438-875DFB9DCF69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B6C5043-A896-437A-A88B-09AB8B28421E}
+	EndGlobalSection
+EndGlobal

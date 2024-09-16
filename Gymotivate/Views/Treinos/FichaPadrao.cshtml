@@ -1,0 +1,162 @@
+﻿@{
+    ViewData["Title"] = "Ficha Iniciante";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte sua Ficha de Treino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="conquista-titulo">
+        <p>Minha Ficha Iniciante</p>
+    </div>
+
+    <div class="container" id="treinoContainer">
+        <div class="treino" data-treino-id="">
+            <ul class="dias-ul">
+                <li class="dia">
+                    Segunda-feira
+                    <div class="exercicio">Supino reto barra</div>
+                    <div class="exercicio">Supino inclinado halter</div>
+                    <div class="exercicio">Crucifixo halter</div>
+                    <div class="exercicio">Peck deck</div>
+                    <div class="exercicio">Tríceps corda</div>
+                    <div class="exercicio">Tríceps francês</div>
+                </li>
+                <li class="dia">
+                    Terça-feira
+                    <div class="exercicio">Puxada alta na máquina</div>
+                    <div class="exercicio">Remada Sentada</div>
+                    <div class="exercicio">Peck dorsal</div>
+                    <div class="exercicio">Puxada alta pegada neutra</div>
+                    <div class="exercicio">Rosca direta barra</div>
+                    <div class="exercicio">Rosca scott máquina</div>
+                </li>
+                <li class="dia">
+                    Quarta-feira
+                    <div class="exercicio">Leg Press 45°</div>
+                    <div class="exercicio">Cadeira Extensora</div>
+                    <div class="exercicio">Avanço</div>
+                    <div class="exercicio">Mesa Flexora</div>
+                    <div class="exercicio">Banco Adutor</div>
+                    <div class="exercicio">Panturrilha</div>
+                </li>
+                <li class="dia">
+                    Quinta-feira
+                </li>
+                <li class="dia">
+                    Sexta-feira
+                    <div class="exercicio">Desenvolvimento máquina</div>
+                    <div class="exercicio">Elevação lateral</div>
+                    <div class="exercicio">Remada alta barra</div>
+                    <div class="exercicio">supra declinado</div>
+                    <div class="exercicio">infra paralela</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Adicione o script no final da sua view -->
+    <script>
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    #meuDropdown {
+        color: #48D34E;
+        background-color: #1A1C1A;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        border-radius: 4px;
+        margin-bottom: 30px;
+    }
+
+    .dias-ul {
+        display: flex;
+        justify-content: center;
+        padding-left: 0px;
+    }
+
+    .treino {
+        width: 100%;
+    }
+
+    .dia {
+        background-color: #1A1C1A;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000;
+        color: #017439;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 19%;
+        flex-grow: 0;
+    }
+
+    /* Estilize os botões dos grupos de exercícios */
+    .grupo-botoes {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .exercicio {
+        background-color: #00252B;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000;
+        color: #48D34E;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 100;
+        margin: 8px;
+        max-width: 200px;
+    }
+
+        .exercicio:hover {
+            background-color: #003418;
+        }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        background-color: #1A1C1A;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .conquista-titulo {
+        display: inline-flex;
+        padding: 0px 52px 18px 46px;
+        align-items: center;
+        border-radius: 0px 0px 15px 15px;
+        background: #00282A;
+        box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset, 0px 25px 60px -30px rgba(72, 211, 78, 0.30), 0px 50px 100px -20px rgba(72, 211, 78, 0.25);
+    }
+
+        .conquista-titulo p {
+            color: #006330;
+            font-family: Karla;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+    li {
+        list-style: none;
+    }
+</style>

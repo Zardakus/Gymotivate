@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gymotivate</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Gymotivate.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #004dda;
+            --dark: #191A19;
+            --green-dark: #003418;
+            --green-light: #48D34E;
+            --green-blue: #00252B;
+            --green-blue-dark: #00252B;
+            --green: #00562B;
+            --green: #00562B;
+            --green-two: #017439;
+            --green-blue: #00252B;
+            --light: #B7F2B9;
+            --grey: #2B2B2B;
+            --white: #FFFFFF;
+            --default-pad: 2.5rem;
+            --medium-pad: calc(var(--default-pad) / 2);
+            --small-pad: calc(var(--medium-pad) / 2);
+        }
+
+        html {
+            height: 100%;
+        }
+
+        html, body {
+            margin: 0;
+        }
+
+        body {
+            font-weight: bold;
+            font-family: Poppins, sans-serif;
+            color: var(--dark);
+            display: flex;
+            background-color: #002126;
+            min-height: 100%;
+        }
+
+        .topnav-menu, .menu {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a {
+            color: var(--green-light);
+            text-decoration: none;
+        }
+
+        .menus {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu {
+            padding: var(--default-pad);
+        }
+
+            .menu li {
+                margin-bottom: var(--small-pad);
+            }
+
+        .mainnav {
+            padding: var(--medium-pad) 0 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #191A19;
+        }
+
+            .mainnav > a {
+                padding-left: var(--default-pad);
+            }
+
+        .main-content {
+            flex-grow: 1;
+            background-image: url("../Views/Imagens/Frame 1.png");
+        }
+
+        .topnav {
+            background-color: #191A19;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        main {
+            padding: var(--default-pad);
+            display: flex;
+            flex-direction: column;
+            gap: var(--default-pad)
+        }
+
+        a:hover {
+            color: var(--green-two);
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="mainnav">      
+        <div class="menus">
+        </div>
+    </nav>
+    <div class="main-content">
+        <header class="topnav">
+            <a class="navbar-brand" asp-area="" asp-controller="" asp-action="">Gymotivate</a>
+        </header>      
+            @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const exercLink = document.querySelector(".exerc a");
+            const exercLinks = document.querySelectorAll(".exerc-links");
+
+            // Adicione um ouvinte de evento de clique ao link "Exercícios"
+            exercLink.addEventListener("click", function (e) {
+                e.preventDefault(); // Impede o comportamento padrão do link
+
+                // Percorre todas as listas de links "Exercícios" e alterna sua exibição
+                exercLinks.forEach(function (link) {
+                    if (link.style.display === "none" || link.style.display === "") {
+                        link.style.display = "block";
+                    } else {
+                        link.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

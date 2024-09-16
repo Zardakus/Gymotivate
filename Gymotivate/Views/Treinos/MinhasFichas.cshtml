@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Minhas Fichas";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte sua Ficha de Treino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="conquista-titulo">
+        <p>Minhas Fichas de Treino</p>
+    </div>
+
+    <!-- Adicione um botão e um dropdown (select) abaixo da div de treino -->
+    <div class="grupo-botoes">
+        <select id="meuDropdown">
+            <!-- Você precisará preencher este dropdown com os valores da coluna "Nome" da tabela "Treino" -->
+            @foreach (var treino in ViewBag.Treinos)
+            {
+                <option value="@treino.TreinoId">@treino.Nome</option>
+            }
+        </select>
+    </div>
+
+    <div class="container" id="treinoContainer">
+        @* Loop de treinos com um identificador para filtragem *@
+        @foreach (var treino in ViewBag.Treinos)
+        {
+            <div class="treino" data-treino-id="@treino.TreinoId">
+                <ul class="dias-ul">
+                    @foreach (var diaSemana in treino.TreinoDiaSemana)
+                    {
+                        <li class="dia">
+                            @diaSemana.DiaSemana-feira
+                            @foreach (var treinoExercicio in diaSemana.TreinoExercicio)
+                            {
+                                <div class="exercicio">@treinoExercicio.Exercicio.Nome</div>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+
+    <!-- Adicione o script no final da sua view -->
+    <script>
+        var dropdown = document.getElementById("meuDropdown");
+        var treinoContainer = document.getElementById("treinoContainer");
+
+        // Evento de inicialização para mostrar o primeiro treino
+        var firstOption = dropdown.options[0];
+        if (firstOption) {
+            var selectedTreinoId = firstOption.value;
+            showSelectedTreino(selectedTreinoId);
+        }
+
+        dropdown.addEventListener("change", function () {
+            var selectedTreinoId = dropdown.value;
+            showSelectedTreino(selectedTreinoId);
+        });
+
+        function showSelectedTreino(selectedTreinoId) {
+            // Ocultar todos os treinos
+            var treinos = treinoContainer.getElementsByClassName("treino");
+            for (var i = 0; i < treinos.length; i++) {
+                treinos[i].style.display = "none";
+            }
+
+            // Exibir apenas o treino correspondente ao ID selecionado
+            var selectedTreino = treinoContainer.querySelector('[data-treino-id="' + selectedTreinoId + '"]');
+            if (selectedTreino) {
+                selectedTreino.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    #meuDropdown {
+        color: #48D34E;
+        background-color: #1A1C1A;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        border-radius: 4px;
+        margin-bottom: 30px;
+    }
+
+    .dias-ul {
+        display: flex;
+        justify-content: center;
+        padding-left: 0px;
+    }
+
+    .treino {
+        width: 100%;
+    }
+    
+    .dia {
+        background-color: #1A1C1A;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000;
+        color: #017439;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 19%;
+        flex-grow: 0;
+    }
+
+    /* Estilize os botões dos grupos de exercícios */
+    .grupo-botoes {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .exercicio {
+        background-color: #00252B;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000;
+        color: #48D34E;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 100;
+        margin: 8px;
+        max-width: 200px;
+    }
+
+        .exercicio:hover {
+            background-color: #003418;
+        }
+
+    .container{
+        display: flex;
+        justify-content: center;
+        background-color: #1A1C1A;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        padding:20px;
+        text-align: center;
+    }
+
+    .conquista-titulo {
+        display: inline-flex;
+        padding: 0px 52px 18px 46px;
+        align-items: center;
+        border-radius: 0px 0px 15px 15px;
+        background: #00282A;
+        box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset, 0px 25px 60px -30px rgba(72, 211, 78, 0.30), 0px 50px 100px -20px rgba(72, 211, 78, 0.25);
+    }
+
+        .conquista-titulo p {
+            color: #006330;
+            font-family: Karla;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+    li {
+        list-style: none;
+    }
+</style>

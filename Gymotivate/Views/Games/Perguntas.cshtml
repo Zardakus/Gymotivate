@@ -1,0 +1,679 @@
+﻿@using Gymotivate.Helper
+@model CadastreModel
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+@{
+    string botao = ViewBag.BotaoClicado as string;
+}
+
+@{
+    // Mapeie os valores do botão para os arrays de perguntas
+    var questionArrays = new Dictionary<string, List<Question>>
+   {
+       { "peitos", new List<Question>
+           {
+               new Question
+               {
+                   question = "1. Qual exercício é mais eficaz para desenvolver o peitoral?",
+                   answers = new List<string> { "Supino", "Rosca direta", "Agachamento" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "2. Quantas vezes por semana devo treinar o peito?",
+                   answers = new List<string> { "1 vez", "2 vezes", "Todos os dias" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "3. Qual é a postura correta durante o supino reto?",
+                   answers = new List<string> { "Arquear as costas", "Manter os pés elevados", "Manter as costas no banco" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "4. Qual é a principal diferença entre o supino inclinado e o supino declinado?",
+                   answers = new List<string> { "A amplitude de movimento", "A pegada na barra", "A orientação do banco" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "5. Qual é o benefício de usar halteres em vez de uma barra no supino?",
+                   answers = new List<string> { "Maior estabilidade", "Melhor ativação do tríceps", "Menos envolvimento do peitoral" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "6. Qual é o músculo auxiliar frequentemente recrutado durante o desenvolvimento do peitoral?",
+                   answers = new List<string> { "Bíceps", "Deltoides", "Quadríceps" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "7. Qual é a fase concêntrica de um supino?",
+                   answers = new List<string> { "Alongamento do músculo", "Contração do músculo", "Relaxamento do músculo" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "8. Qual é a técnica correta para realizar uma série negativa no supino?",
+                   answers = new List<string> { "Usar um peso mais leve", "Descer a barra lentamente", "Descansar entre repetições" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "9. Qual é a principal função do cabo crossover na academia?",
+                   answers = new List<string> { "Isolar o músculo peitoral", "Trabalhar os músculos das costas", "Fortalecer as pernas" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "10. Qual é a porção do músculo peitoral mais ativada durante o supino declinado?",
+                   answers = new List<string> { "Porção superior", "Porção inferior", "Porção média" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "11. O que é uma repetição forçada no contexto de um treino de peito?",
+                   answers = new List<string> { "Realizar uma repetição além da falha muscular", "Realizar uma repetição com menos peso", "Realizar uma repetição rapidamente" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "12. O que é uma série supersérie no treino de peito?",
+                   answers = new List<string> { "Duas séries consecutivas sem descanso", "Duas séries com pesos diferentes", "Duas séries separadas por um longo intervalo de descanso" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "13. Qual é a principal diferença entre uma flexão com pegada larga e uma flexão com pegada estreita?",
+                   answers = new List<string> { "A largura do banco", "A posição dos pés", "A ativação muscular" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "14. O que é uma série em pirâmide no treino de peito?",
+                   answers = new List<string> { "Aumento progressivo do peso a cada série", "Diminuição do peso a cada série", "Realização de séries com intervalos regulares" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "15. Qual é o músculo antagonista ao músculo peitoral?",
+                   answers = new List<string> { "Deltoides", "Bíceps", "Tríceps" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               // Adicione mais perguntas para o grupo de peitos, se necessário
+           }
+       },
+       { "costas", new List<Question>
+           {
+               new Question
+               {
+                   question = "1. Qual é o músculo principal trabalhado nos exercícios de costas?",
+                   answers = new List<string> { "Bíceps", "Dorsais", "Abdômen" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "2. Qual é a importância de manter uma boa postura ao treinar costas?",
+                   answers = new List<string> { "Não é importante", "Evita lesões", "Aumenta a força" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "3. Qual exercício é mais eficaz para desenvolver os músculos das costas?",
+                   answers = new List<string> { "Agachamento", "Levantamento terra", "Barra fixa" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "4. Qual é a função principal dos músculos das costas?",
+                   answers = new List<string> { "Extensão do quadril", "Flexão do cotovelo", "Retração da escápula" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "5. Qual é o nome do exercício em que você puxa um cabo em direção ao peito para trabalhar as costas?",
+                   answers = new List<string> { "Pulldown frontal", "Rosca bíceps", "Supino reto" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "6. Qual é a principal função dos músculos trapézios?",
+                   answers = new List<string> { "Adução do quadril", "Abdução do ombro", "Elevação e depressão das escápulas" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "7. Qual é o músculo auxiliar frequentemente recrutado durante o levantamento terra?",
+                   answers = new List<string> { "Deltoides", "Glúteos", "Quadríceps" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "8. Qual é a fase excêntrica de um pull-down?",
+                   answers = new List<string> { "Levantamento da barra", "Descida da barra", "Pausa no meio do movimento" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "9. Qual é a função dos músculos romboides?",
+                   answers = new List<string> { "Flexão do quadril", "Extensão do ombro", "Retração das escápulas" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "10. Qual é o exercício que visa principalmente a parte superior das costas?",
+                   answers = new List<string> { "Pulldown frontal", "Pull-up", "Remada unilateral" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "11. Qual é a principal diferença entre a pegada pronada e supinada em um pull-up?",
+                   answers = new List<string> { "A largura das mãos", "A direção das palmas das mãos", "O tipo de barra usada" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "12. Qual é a principal vantagem de usar um cinto de levantamento durante o levantamento terra?",
+                   answers = new List<string> { "Aumentar a flexibilidade", "Evitar lesões na coluna", "Reduzir o peso do levantamento" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "13. O que é uma série drop-set no treino de costas?",
+                   answers = new List<string> { "Realizar séries com pesos crescentes", "Realizar séries com pesos decrescentes sem descanso", "Realizar séries com intervalos regulares" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "14. O que é um pulldown na máquina alta?",
+                   answers = new List<string> { "Um exercício para os ombros", "Um exercício para as costas", "Um exercício para os tríceps" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "15. O que é a isometria no contexto de exercícios de costas?",
+                   answers = new List<string> { "Um exercício de alongamento", "Uma técnica de treinamento de resistência", "Um tipo de movimento de rotação" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },              
+               // Adicione mais perguntas para o grupo de costas, se necessário
+           }
+       },
+       { "pernas", new List<Question>
+           {
+               new Question
+               {
+                   question = "1. Qual é o maior músculo das pernas?",
+                   answers = new List<string> { "Quadríceps", "Bíceps femoral", "Gastrocnêmio" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "2. Qual exercício é eficaz para desenvolver os músculos da coxa?",
+                   answers = new List<string> { "Caminhada", "Agachamento", "Rosca Scott" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "3. Qual exercício é mais eficaz para desenvolver os músculos das pernas?",
+                   answers = new List<string> { " Rosca bíceps", "Extensão do quadril", "Supino reto" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "4. Qual é a função principal dos músculos das pernas?",
+                   answers = new List<string> { "Flexionar o ombro", "Flexionar o quadril", "Flexionar o cotovelo" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "5. Qual é o nome do exercício que visa principalmente os músculos quadríceps?",
+                   answers = new List<string> { "Agachamento", "Rosca direta", "Pull-up" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "6. Qual é a função dos músculos isquiotibiais nas pernas?",
+                   answers = new List<string> { "Extensão do quadril", "Flexão do quadril", "Rotação do tornozelo" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "7. Qual é a principal vantagem de usar a máquina de extensão de pernas em vez do agachamento?",
+                   answers = new List<string> { "Maior ativação dos quadríceps", "Maior ativação dos músculos das costas", "Menos estresse nas articulações" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "8. Qual é o músculo auxiliar frequentemente recrutado durante o agachamento?",
+                   answers = new List<string> { "Deltoides", "Glúteos", "Tríceps" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "9. Qual é a fase concêntrica de um leg press?",
+                   answers = new List<string> { "Levantamento da carga", "Descida da carga", "Pausa no meio do movimento" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "10. Qual é a principal diferença entre o agachamento livre e o agachamento Smith?",
+                   answers = new List<string> { "A pegada na barra", "A amplitude de movimento", "A direção da barra" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "11. Qual é o exercício que visa principalmente os músculos adutores das pernas?",
+                   answers = new List<string> { "Leg press", "Agachamento unilateral", "Extensão de pernas" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "12. Qual é a função dos músculos abdutores das pernas?",
+                   answers = new List<string> { "Aproximação das pernas", "Afastamento das pernas", "Rotação das pernas" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "13. O que é uma série drop-set no treino de pernas?",
+                   answers = new List<string> { "Realizar séries com pesos crescentes", "Realizar séries com descanso prolongado", "Realizar séries com pesos decrescentes sem descanso" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "14. Qual é a vantagem de realizar agachamentos com os pés posicionados mais afastados?",
+                   answers = new List<string> { "Maior ativação dos músculos isquiotibiais", "Maior ativação dos músculos adutores", "Maior estabilidade" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "15. Qual é o músculo antagonista ao músculo quadríceps?",
+                   answers = new List<string> { "Glúteos", "Tríceps", "Isquiotibiais" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               // Adicione mais perguntas para o grupo de pernas, se necessário
+           }
+       },
+       { "bracos", new List<Question>
+           {
+               new Question
+               {
+                   question = "1. Qual é o principal músculo do braço?",
+                   answers = new List<string> { "Bíceps", "Tríceps", "Deltoides" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "2. Qual exercício é eficaz para o desenvolvimento dos tríceps?",
+                   answers = new List<string> { "Rosca Scott", "Flexões de braço", "Tríceps no Pulley" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "3. Qual exercício é mais eficaz para o desenvolvimento dos músculos do braço?",
+                   answers = new List<string> { "Agachamento", "Supino reto", "Rosca bíceps" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "4. Qual é a função principal dos músculos do tríceps?",
+                   answers = new List<string> { "Flexionar o cotovelo", "Estender o cotovelo", "Flexionar o quadril" },
+                   correctAnswer = 1,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "5. Qual é o nome do exercício que trabalha os músculos do tríceps e envolve empurrar uma barra para cima?",
+                   answers = new List<string> { "Rosca direta", "Pulldown", "Supino fechado" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "6. Qual é a principal vantagem de usar halteres em exercícios de bíceps?",
+                   answers = new List<string> { "Maior estabilidade", "Maior ativação dos tríceps", "Menos envolvimento dos músculos do braço" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "7. Qual é o músculo auxiliar frequentemente recrutado durante o supino fechado?",
+                   answers = new List<string> { "Deltoides", "Peitoral", "Tríceps" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "8. Qual é o exercício que visa principalmente os músculos tríceps?",
+                   answers = new List<string> { "Rosca bíceps", "Rosca inversa", "Extensão de tríceps" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "9. Qual é a porção do tríceps mais ativada durante a extensão de tríceps na polia alta?",
+                   answers = new List<string> { "Porção lateral", "Porção medial", "Porção longa" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "10. Qual é a principal vantagem de usar um cabo na rosca de bíceps em vez de uma barra?",
+                   answers = new List<string> { "Maior estabilidade", "Maior ativação dos músculos do braço", "Menos envolvimento dos músculos do braço" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "11. Qual é o músculo antagonista ao músculo bíceps?",
+                   answers = new List<string> { "Tríceps", "Deltoides", "Peitoral" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "12. Qual é a principal diferença entre um tríceps testa e um tríceps coice?",
+                   answers = new List<string> { "A posição do corpo", "A pegada na barra", "O tipo de barra usada" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "13. O que é um curl de martelo no contexto de exercícios de braço?",
+                   answers = new List<string> { "Um exercício para o tríceps", "Um exercício para os bíceps", "Um exercício que envolve uma rotação no pulso" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "14. O que é uma série 21 no treino de braço?",
+                   answers = new List<string> { "Uma série com 21 repetições", "Uma série de flexões", " Uma série com 21 séries consecutivas" },
+                   correctAnswer = 0,
+                   selectedAnswer = -1
+               },
+               new Question
+               {
+                   question = "15. Qual é o exercício que visa principalmente os músculos braquiorradial?",
+                   answers = new List<string> { "Extensão de tríceps na corda", "Rosca 21", "Rosca concentrada" },
+                   correctAnswer = 2,
+                   selectedAnswer = -1
+               },
+               // Adicione mais perguntas para o grupo de braços, se necessário
+           }
+       }
+   };
+}
+
+
+<body>
+    <main role="main">
+        <div class="conquista-titulo">
+            <p>Quiz</p>
+        </div>
+        <div class="container">
+            <h2 id="question"></h2>
+            <ul id="answers">
+            </ul>
+            <button class="btn-responder" onclick="checkAnswer()" id="responderButton" disabled>Responder</button>
+        </div>
+        <div id="resultado" style="display: none;">           
+            <article class="score">   
+                <h3>Pontuação Final: <span id="pontuacao"></span> de <span id="totalPerguntas"></span></h3>
+                <a class="btn-responder btn-voltar" asp-area="" asp-controller="Games" asp-action="Index">Voltar</a>
+            </article>
+        </div>
+    </main>
+    <script>
+        const botao = '@botao'; // Recupere o valor do botão clicado da ViewBag
+
+        // Use o valor do botão clicado para obter o array de perguntas correspondente
+        const questions = @Html.Raw(Json.Serialize(questionArrays[botao]));
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Selecionar o botão "Responder"
+        const responderButton = document.getElementById("responderButton");
+
+        function displayQuestion(index) {
+            const questionElement = document.getElementById("question");
+            const answersElement = document.getElementById("answers");
+
+            const currentQuestion = questions[index];
+            questionElement.textContent = currentQuestion.question;
+
+            answersElement.innerHTML = "";
+
+            currentQuestion.answers.forEach((answer, index) => {
+                const li = document.createElement("li");
+                const button = document.createElement("button");
+                button.textContent = answer;
+
+                if (currentQuestion.selectedAnswer === index) {
+                    button.classList.add("selected");
+                }
+
+                button.addEventListener("click", () => selectAnswer(index));
+                li.appendChild(button);
+                answersElement.appendChild(li);
+            });
+
+            // Habilitar o botão "Responder" somente se uma resposta foi selecionada
+            responderButton.disabled = currentQuestion.selectedAnswer === -1;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const currentQuestion = questions[currentQuestionIndex];
+            currentQuestion.selectedAnswer = selectedIndex;
+
+            // Atualize a interface para refletir a seleção do usuário
+            displayQuestion(currentQuestionIndex);
+        }
+
+        function checkAnswer() {
+            const currentQuestion = questions[currentQuestionIndex];
+            if (currentQuestion.selectedAnswer === currentQuestion.correctAnswer) {
+                score++;
+
+                // Determine o grupo de perguntas (peitos, costas, pernas, braços)
+                const grupoPerguntas = '@botao'; // Substitua pelo seu método para obter o grupo de perguntas
+
+                // Fazer uma chamada AJAX para atualizar os acertos
+                $.ajax({
+                    type: "POST",
+                    url: "/Games/AtualizarAcertos",
+                    data: {
+                        grupoPerguntas: grupoPerguntas,
+                        acertos: 1
+                    },
+                    success: function (data) {
+                        // Redirecionar ou realizar outras ações, se necessário
+                    },
+                    error: function (error) {
+                        // Tratar erros, se necessário
+                    }
+                });
+            }
+
+            // Avance para a próxima pergunta
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion(currentQuestionIndex);
+            } else {
+                // Todas as perguntas foram respondidas
+                const resultadoElement = document.getElementById("resultado");
+                const pontuacaoElement = document.getElementById("pontuacao");
+                const totalPerguntasElement = document.getElementById("totalPerguntas");
+
+                pontuacaoElement.textContent = score;
+                totalPerguntasElement.textContent = questions.length;
+
+                resultadoElement.style.display = "block"; // Exibe a mensagem de resultado
+                responderButton.style.display = "none"; // Oculta o botão "Responder"
+            }
+
+            // Desabilitar o botão "Responder" após verificar a resposta
+            responderButton.disabled = true;
+        }
+
+        // Exibe a primeira pergunta quando a página é carregada
+        displayQuestion(currentQuestionIndex);
+    </script>
+</body>
+
+
+<!-- Estilos CSS -->
+<style>
+    main {
+        justify-content: center;
+        align-items: center;
+        padding-top: 0px;
+    }
+
+    .container {
+        background-color: #1A1C1A;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.00) inset, 0px 2px 8px 0px #000, 0px 1px 1px 0px #000;
+        padding: 20px;
+        text-align: center;
+        margin: 20px;
+    }
+
+    h2 {
+        color: #48D34E;
+        font-family: Patua One;
+        font-size: 24px;
+    }
+
+    #answers {
+        list-style: none;
+        padding: 0;
+    }
+
+        #answers button {
+            margin: 10px 0;
+            color: #B7F2B9;
+            font-family: Karla;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            background-color: transparent;
+            border: 0px solid #000;
+        }
+
+    label {
+        cursor: pointer;
+        background-color: #00282A;
+        color: #B7F2B9;
+        padding: 10px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    .btn-responder {
+        background-color: #48D34E;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        .btn-responder:hover {
+            background-color: #017439;
+        }
+
+    .conquista-titulo {
+        display: inline-flex;
+        padding: 0px 52px 18px 46px;
+        align-items: center;
+        border-radius: 0px 0px 15px 15px;
+        background: #00282A;
+        box-shadow: 0px -2px 6px 0px rgba(72, 211, 78, 0.35) inset, 0px 25px 60px -30px rgba(72, 211, 78, 0.30), 0px 50px 100px -20px rgba(72, 211, 78, 0.25);
+    }
+
+        .conquista-titulo p {
+            color: #006330;
+            font-family: Karla;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+    #answers button.selected {
+        background-color: #006330;
+        color: #48D34E;
+        border-radius: 10px;
+    }
+
+    .score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h3 {
+        color: #48D34E;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+
+    .btn-voltar:hover {
+        color: #48D34E;
+    }
+
+</style>
